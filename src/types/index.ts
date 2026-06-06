@@ -38,7 +38,7 @@ export interface Project {
   featured: boolean;
   large: boolean;
   year: number;
-  metrics: Record<string, string | number | null>;
+  metrics: Record<string, string | number | null | undefined>;
 }
 
 export interface Certification {
