@@ -470,6 +470,6 @@ export const portfolioData = {
     url: "https://iqbalsyahbana.dev",
     twitterHandle: "@iqbalsyahbana",
   },
-} as const;
+};
 
 export type PortfolioData = typeof portfolioData;
