@@ -51,18 +51,19 @@ export function AboutSection() {
           behind the code
         </motion.h2>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-[420px_1fr] gap-8 lg:gap-12 items-center">
           {/* Avatar */}
           <motion.div
             variants={slideInLeft}
-            className="relative aspect-square max-w-sm mx-auto lg:mx-0"
+            className="relative w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[420px] aspect-square mx-auto lg:mx-0"
           >
-            <div className="w-full h-full rounded-3xl overflow-hidden relative">
+            <div className="relative w-full h-full overflow-hidden rounded-3xl">
               <Image
                 src={profile.avatar}
                 alt={profile.name}
                 fill
                 priority
+                sizes="(max-width: 768px) 280px, (max-width: 1024px) 340px, 420px"
                 className="object-cover rounded-3xl"
               />
 
@@ -84,10 +85,15 @@ export function AboutSection() {
               />
             </div>
 
+            {/* Floating Status Badge */}
             <motion.div
               animate={{ y: [-4, 4, -4] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-4 -right-4 bg-[var(--surface)] border border-[var(--border-color2)] rounded-2xl px-4 py-3 shadow-xl"
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 bg-[var(--surface)] border border-[var(--border-color2)] rounded-2xl px-3 py-2 sm:px-4 sm:py-3 shadow-xl"
             >
               <div className="text-xs text-[var(--text-tertiary)]">Status</div>
 
@@ -99,18 +105,23 @@ export function AboutSection() {
           </motion.div>
 
           {/* Info */}
-          <motion.div variants={slideInRight}>
-            <h3 className="font-syne text-3xl font-bold mb-1">
+          <motion.div
+            variants={slideInRight}
+            className="text-center lg:text-left"
+          >
+            <h3 className="font-syne text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">
               {profile.name}
             </h3>
-            <p className="text-[var(--accent-primary)] text-sm font-medium mb-6">
+
+            <p className="text-[var(--accent-primary)] text-sm sm:text-base font-medium mb-6">
               {profile.title} · Product Architect
             </p>
-            <p className="text-[var(--text-secondary)] text-[15px] leading-[1.85] mb-4">
+
+            <p className="text-[14px] sm:text-[15px] lg:text-base text-[var(--text-secondary)] leading-relaxed lg:leading-[1.85] mb-6">
               {profile.longBio}
             </p>
 
-            <div className="flex flex-wrap gap-2 mb-8">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-8">
               {profile.traits.map((t) => (
                 <span
                   key={t}
@@ -121,7 +132,7 @@ export function AboutSection() {
               ))}
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3">
               {socials.map((s) => (
                 <motion.a
                   key={s.platform}
