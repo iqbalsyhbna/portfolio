@@ -1,25 +1,25 @@
 // ============================================================
 //  src/data/portfolio.ts
 //  THE SINGLE SOURCE OF TRUTH — Edit only this file!
-//  Updated from: Muhammad Iqbal Syahbana — CV
+//  Updated from: Iqbal Syahbana — CV
 // ============================================================
 
 export const portfolioData = {
   // ─── PROFILE ─────────────────────────────────────────────
   profile: {
-    name: "Muhammad Iqbal Syahbana",
+    name: "Iqbal Syahbana",
     title: "Software Engineer",
     tagline: "Software Engineer & Frontend Specialist",
     shortBio:
       "I craft high-quality, performant web applications with a strong focus on clean code, great user experience, and modern frontend engineering. Currently building impactful products at PT Triatra Sinergia Pratama.",
     longBio:
       "Software Engineer with hands-on experience developing internal web applications, mobile apps, and enterprise systems across multiple industries. I specialize in React.js, PWA, and UI/UX implementation — bridging design and engineering to deliver products that are both beautiful and reliable. Passionate about code quality, team collaboration, and continuously levelling up through learning.",
-    avatar: "/images/avatar.jpg",
+    avatar: "/images/profile.jpeg",
     location: "Indonesia",
     timezone: "UTC+7",
     email: "iqbalsyahbana.m@gmail.com",
     phone: "+6281273764305",
-    cvUrl: "/cv/muhammad-iqbal-syahbana-cv.pdf",
+    cvUrl: "https://drive.google.com/file/d/177S1XeDr30NcoqrBHgyYNGtD5MQCW0gT/view?usp=sharing",
     available: true,
     availableText: "Open to new opportunities",
     responseTime: "Within 24 hours",
@@ -42,7 +42,7 @@ export const portfolioData = {
   socials: [
     {
       platform: "LinkedIn",
-      url: "https://linkedin.com/in/iqbalsyahbana",
+      url: "https://www.linkedin.com/in/iqbalsyahbana/",
       icon: "Linkedin",
     },
     {
@@ -52,7 +52,7 @@ export const portfolioData = {
     },
     {
       platform: "GitHub",
-      url: "https://github.com/iqbalsyahbana",
+      url: "https://github.com/iqbalsyhbna",
       icon: "Github",
     },
   ],
@@ -113,7 +113,7 @@ export const portfolioData = {
       role: "Software Engineer",
       company: "PT Triatra Sinergia Pratama",
       type: "Contract",
-      period: "May 2023 — Present",
+      period: "May 2023 — April 2025",
       duration: "2+ years",
       location: "Jakarta, Indonesia",
       current: true,
@@ -454,7 +454,7 @@ export const portfolioData = {
 
   // ─── SEO & META ───────────────────────────────────────────
   seo: {
-    title: "Muhammad Iqbal Syahbana — Software Engineer",
+    title: "Iqbal Syahbana — Software Engineer",
     description:
       "Software Engineer specializing in React.js, PWA, Flutter, and UI/UX design. Based in Indonesia. Currently building 'Dikantor' at PT Triatra Sinergia Pratama.",
     keywords: [
@@ -464,7 +464,7 @@ export const portfolioData = {
       "PWA Developer",
       "Flutter Developer",
       "UI/UX Designer",
-      "Muhammad Iqbal Syahbana",
+      "Iqbal Syahbana",
     ],
     ogImage: "/og-image.jpg",
     url: "https://iqbalsyahbana.dev",

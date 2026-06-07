@@ -94,6 +94,8 @@ export function Navbar() {
 
             <a
               href={portfolioData.profile.cvUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               download
               className="flex items-center gap-2 px-4 py-1.5 rounded-lg bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white text-[12px] font-medium hover:opacity-85 transition-opacity"
             >

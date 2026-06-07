@@ -24,10 +24,19 @@ function TechFloat({ icon, style }: { icon: string; style: React.CSSProperties }
   );
 }
 
-function StatCard({ stat, index }: { stat: typeof portfolioData.profile.stats[0]; index: number }) {
+function StatCard({
+  stat,
+  index,
+}: {
+  stat: typeof portfolioData.profile.stats[0];
+  index: number;
+}) {
   const [ref, inView] = useInView({ triggerOnce: true });
-  const numStr = stat.value.replace(/[^0-9]/g, "");
-  const num = parseInt(numStr, 10);
+
+  const cleanValue = stat.value.replace(/[^\d.]/g, "");
+  const isNumeric = cleanValue !== "" && !isNaN(Number(cleanValue));
+  const num = Number(cleanValue);
+  const suffix = stat.value.replace(/[\d.]/g, "");
 
   return (
     <motion.div
@@ -38,15 +47,31 @@ function StatCard({ stat, index }: { stat: typeof portfolioData.profile.stats[0]
     >
       <div className="font-syne text-3xl font-black text-[var(--text-primary)]">
         {inView ? (
-          <>
-            <CountUp end={num} duration={2} delay={index * 0.15} />
-            <span className="text-[var(--accent-primary)]">{stat.value.replace(/[0-9]/g, "")}</span>
-          </>
+          isNumeric ? (
+            <>
+              <CountUp
+                end={num}
+                duration={2}
+                delay={index * 0.15}
+                decimals={cleanValue.includes(".") ? 2 : 0}
+              />
+              {suffix && (
+                <span className="text-[var(--accent-primary)]">
+                  {suffix}
+                </span>
+              )}
+            </>
+          ) : (
+            <span>{stat.value}</span>
+          )
         ) : (
           <span>{stat.value}</span>
         )}
       </div>
-      <div className="text-[11px] text-[var(--text-tertiary)] mt-1">{stat.label}</div>
+
+      <div className="mt-1 text-[11px] text-[var(--text-tertiary)]">
+        {stat.label}
+      </div>
     </motion.div>
   );
 }
@@ -158,6 +183,8 @@ export function HeroSection() {
           </motion.a>
           <motion.a
             href={profile.cvUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             download
             className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-[var(--border-color2)] bg-[var(--surface)] text-[var(--text-primary)] text-sm hover:border-[var(--accent-primary)] transition-all"
             whileHover={{ scale: 1.02, y: -2 }}

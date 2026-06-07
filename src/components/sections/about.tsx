@@ -4,7 +4,13 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Github, Linkedin, Twitter, Instagram, Mail } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
-import { staggerContainer, fadeUp, slideInLeft, slideInRight } from "@/lib/animations";
+import {
+  staggerContainer,
+  fadeUp,
+  slideInLeft,
+  slideInRight,
+} from "@/lib/animations";
+import Image from "next/image";
 
 const SOCIAL_ICONS: Record<string, React.ReactNode> = {
   GitHub: <Github size={16} />,
@@ -30,34 +36,61 @@ export function AboutSection() {
         animate={inView ? "visible" : "hidden"}
         className="max-w-7xl mx-auto"
       >
-        <motion.div variants={fadeUp} className="flex items-center gap-2 text-[var(--accent-primary)] text-[11px] font-medium tracking-[0.12em] uppercase mb-4">
+        <motion.div
+          variants={fadeUp}
+          className="flex items-center gap-2 text-[var(--accent-primary)] text-[11px] font-medium tracking-[0.12em] uppercase mb-4"
+        >
           <span className="w-6 h-px bg-[var(--accent-primary)]" /> 01 — About Me
         </motion.div>
-        <motion.h2 variants={fadeUp} className="font-syne text-[clamp(32px,4vw,52px)] font-black tracking-tight leading-tight mb-16">
-          The person<br />behind the code
+        <motion.h2
+          variants={fadeUp}
+          className="font-syne text-[clamp(32px,4vw,52px)] font-black tracking-tight leading-tight mb-16"
+        >
+          The person
+          <br />
+          behind the code
         </motion.h2>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Avatar */}
-          <motion.div variants={slideInLeft} className="relative aspect-square max-w-sm mx-auto lg:mx-0">
-            <div className="w-full h-full rounded-3xl bg-gradient-to-br from-[var(--surface2)] to-[var(--bg-tertiary)] flex items-center justify-center overflow-hidden relative">
-              <div className="absolute inset-0" style={{ background: "radial-gradient(circle at 30% 30%,rgba(232,121,249,0.15),transparent 60%),radial-gradient(circle at 70% 70%,rgba(129,140,248,0.1),transparent 60%)" }} />
-              <div className="relative z-10 text-center">
-                <div className="font-syne text-[80px] font-black gradient-text leading-none">
-                  {profile.name.split(" ").map((n) => n[0]).join("")}
-                </div>
-                <div className="text-sm text-[var(--text-tertiary)] mt-2">{profile.title}</div>
-              </div>
-              {/* Decorative ring */}
-              <div className="absolute inset-0 rounded-3xl" style={{ background: "linear-gradient(135deg,var(--accent-primary),var(--accent-secondary))", opacity: 0.08 }} />
+          <motion.div
+            variants={slideInLeft}
+            className="relative aspect-square max-w-sm mx-auto lg:mx-0"
+          >
+            <div className="w-full h-full rounded-3xl overflow-hidden relative">
+              <Image
+                src={profile.avatar}
+                alt={profile.name}
+                fill
+                priority
+                className="object-cover rounded-3xl"
+              />
+
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(0,0,0,.35), transparent 40%)",
+                }}
+              />
+
+              <div
+                className="absolute inset-0 rounded-3xl"
+                style={{
+                  background:
+                    "linear-gradient(135deg,var(--accent-primary),var(--accent-secondary))",
+                  opacity: 0.08,
+                }}
+              />
             </div>
-            {/* Floating badge */}
+
             <motion.div
               animate={{ y: [-4, 4, -4] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -bottom-4 -right-4 bg-[var(--surface)] border border-[var(--border-color2)] rounded-2xl px-4 py-3 shadow-xl"
             >
               <div className="text-xs text-[var(--text-tertiary)]">Status</div>
+
               <div className="text-sm font-semibold text-[var(--accent-tertiary)] flex items-center gap-1.5 mt-0.5">
                 <span className="w-2 h-2 rounded-full bg-[var(--accent-tertiary)] animate-pulse" />
                 {profile.available ? "Available" : "Unavailable"}
@@ -67,13 +100,22 @@ export function AboutSection() {
 
           {/* Info */}
           <motion.div variants={slideInRight}>
-            <h3 className="font-syne text-3xl font-bold mb-1">{profile.name}</h3>
-            <p className="text-[var(--accent-primary)] text-sm font-medium mb-6">{profile.title} · Product Architect</p>
-            <p className="text-[var(--text-secondary)] text-[15px] leading-[1.85] mb-4">{profile.longBio}</p>
+            <h3 className="font-syne text-3xl font-bold mb-1">
+              {profile.name}
+            </h3>
+            <p className="text-[var(--accent-primary)] text-sm font-medium mb-6">
+              {profile.title} · Product Architect
+            </p>
+            <p className="text-[var(--text-secondary)] text-[15px] leading-[1.85] mb-4">
+              {profile.longBio}
+            </p>
 
             <div className="flex flex-wrap gap-2 mb-8">
               {profile.traits.map((t) => (
-                <span key={t} className="px-3 py-1.5 rounded-full border border-[var(--border-color)] bg-[var(--surface)] text-xs text-[var(--text-secondary)]">
+                <span
+                  key={t}
+                  className="px-3 py-1.5 rounded-full border border-[var(--border-color)] bg-[var(--surface)] text-xs text-[var(--text-secondary)]"
+                >
                   {t}
                 </span>
               ))}
