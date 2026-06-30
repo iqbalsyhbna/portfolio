@@ -149,7 +149,7 @@ export function HeroSection() {
         >
           <span className="text-[var(--text-secondary)]">Full-Stack</span>
           <br />
-          <span className="gradient-text-tri">
+          <span className="gradient-text-tri inline-block h-[1em] align-bottom whitespace-nowrap">
             <TypeAnimation
               sequence={["Engineer", 2000, "Architect", 2000, "Creator", 2000]}
               wrapper="span"
