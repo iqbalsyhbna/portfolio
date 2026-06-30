@@ -9,8 +9,11 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // Disable smooth-scroll on touch/mobile devices to avoid conflict
     // with native inertial scroll and mobile viewport height (address bar) resizing.
-    const isTouch = window.matchMedia("(pointer: coarse)").matches;
-    if (isTouch) return;
+    const isMobile =
+      window.matchMedia("(pointer: coarse)").matches ||
+      window.innerWidth < 1024 ||
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobile) return;
 
     const lenis = new Lenis({
       duration: 1.2,

@@ -73,12 +73,14 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
     @apply overflow-x-hidden;
   }
 
-  html.lenis {
-    scroll-behavior: auto !important;
+  @media (min-width: 1024px) {
+    html:not(.lenis) {
+      scroll-behavior: smooth;
+    }
   }
 
   body {
