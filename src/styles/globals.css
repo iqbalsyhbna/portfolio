@@ -77,6 +77,10 @@
     @apply overflow-x-hidden;
   }
 
+  html.lenis {
+    scroll-behavior: auto !important;
+  }
+
   body {
     background: var(--bg-primary);
     color: var(--text-primary);

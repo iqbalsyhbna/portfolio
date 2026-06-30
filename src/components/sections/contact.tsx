@@ -32,12 +32,28 @@ export function ContactSection() {
 
   const onSubmit = async (data: ContactFormValues) => {
     setStatus("loading");
-    // Replace with your actual email service (e.g. Resend, EmailJS, etc.)
-    await new Promise((r) => setTimeout(r, 1500));
-    console.log("Form submitted:", data);
-    setStatus("success");
-    reset();
-    setTimeout(() => setStatus("idle"), 4000);
+    try {
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to send message");
+      }
+
+      setStatus("success");
+      reset();
+      setTimeout(() => setStatus("idle"), 4000);
+    } catch (err) {
+      console.error("Error submitting contact form:", err);
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 5000);
+    }
   };
 
   const { profile } = portfolioData;
@@ -160,6 +176,16 @@ export function ContactSection() {
                 />
                 {errors.message && <p className="text-[11px] text-red-400">{errors.message.message}</p>}
               </div>
+
+              {status === "error" && (
+                <motion.p
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-xs text-red-400 text-center font-medium bg-red-950/20 border border-red-500/30 py-2.5 rounded-xl"
+                >
+                  Failed to send message. Please try again later.
+                </motion.p>
+              )}
 
               <motion.button
                 type="submit"
