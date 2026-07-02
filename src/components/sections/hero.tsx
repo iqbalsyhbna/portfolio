@@ -145,11 +145,12 @@ export function HeroSection() {
         {/* Title */}
         <motion.h1
           variants={fadeUp}
-          className="font-syne text-[clamp(52px,6vw,88px)] font-black leading-[1.0] tracking-[-0.04em] mb-4"
+          className="font-syne text-[clamp(40px,6vw,88px)] font-black leading-[1.1] sm:leading-[1.0] tracking-[-0.04em] mb-4"
         >
           <span className="text-[var(--text-secondary)]">Full-Stack</span>
           <br />
-          <span className="gradient-text-tri inline-block h-[1em] align-bottom whitespace-nowrap">
+          {/* PERBAIKAN: Ditambahkan `block sm:inline-block` dan min-width/height agar layout tidak bergeser */}
+          <span className="gradient-text-tri block sm:inline-block min-h-[1.1em] sm:h-[1em] align-bottom whitespace-nowrap">
             <TypeAnimation
               sequence={["Engineer", 2000, "Architect", 2000, "Creator", 2000]}
               wrapper="span"
@@ -157,8 +158,8 @@ export function HeroSection() {
               repeat={Infinity}
             />
           </span>
-          <br />
-          <span className="text-[var(--text-secondary)]">&amp; Builder</span>
+          <br className="hidden sm:block" />
+          <span className="text-[var(--text-secondary)]"> &amp; Builder</span>
         </motion.h1>
 
         {/* Sub */}
